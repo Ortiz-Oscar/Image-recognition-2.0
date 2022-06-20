@@ -1,10 +1,10 @@
 import Navbar from '../../components/Navbar/Navbar';
-function Image_Recognition(){
+function Text_to_Speech(){
     return (
         <div>
             <Navbar/>
-            Hello from image recognition page
+            Hello from text to speech recon page
         </div>
     );
 }
-export default Image_Recognition;
+export default Text_to_Speech;

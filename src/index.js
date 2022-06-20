@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Image_Recognition from './pages/image-recognition/image-recognition'
+import Text_to_Speech from './pages/text-to-speech/text-to-speech'
+
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter,
@@ -16,6 +18,7 @@ root.render(
     <Routes>
     <Route path="/" element={<App />} />
     <Route path="/img-recon" element={<Image_Recognition />} />
+    <Route path="/text-to-speech" element={<Text_to_Speech />} />
     </Routes>
     </BrowserRouter>
   </React.StrictMode>
