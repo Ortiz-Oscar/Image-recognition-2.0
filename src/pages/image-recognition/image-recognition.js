@@ -1,9 +1,9 @@
 import Navbar from '../../components/Navbar/Navbar';
 import React, { useState } from 'react';
+import FileUpload from '../../components/FileUpload/FileUpload';
 function Image_Recognition(){
     
     const [sourceIsURL, updateImgSrc] = useState(false)
-    const [imgageSrc, updateImg] = useState(null)
 
     return (
         
@@ -21,7 +21,7 @@ function Image_Recognition(){
                 <form className="w-full max-w-lg">
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full md:w-auto px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                 Paste here your image URL, make sure is a valid one by putting it on the browser
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="URL" />
@@ -30,7 +30,7 @@ function Image_Recognition(){
                     </div>
                     
                 </form>
-            : <div> Source is not an URL </div> }
+            : <FileUpload/> }
             </div>
         </div>
     );
