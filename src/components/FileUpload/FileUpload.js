@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 function FileUpload(){
-    const [image, updateImg] = useState(null)
-    const handleImageUpload = (event) => {
-        updateImg(event.target)
-        console.log(image)
+    const [image, updateImg] = useState({})
+
+    function handleImageUpload(event){
+        const files = event.target.files[0]
+        updateImg(files)
     }
     return (
         <div className="flex justify-center items-center w-60">
@@ -15,7 +16,7 @@ function FileUpload(){
                     <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">
                         Click to upload</span> or drag and drop</p>
                 </div>
-                <input id="dropzone-file" type="file" className="hidden" accept="image/*" onChange={ handleImageUpload } />
+                <input id="dropzone-file" type="file" className="hidden" accept="image/*" onChange={ e => handleImageUpload(e) } />
             </label>
         </div> )
 }
