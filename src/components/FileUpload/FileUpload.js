@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-function FileUpload(){
-    const [image, updateImg] = useState({})
+import React from 'react';
+function FileUpload({imageRef, updateImg}){
+
 
     function handleImageUpload(event){
         const files = event.target.files[0]

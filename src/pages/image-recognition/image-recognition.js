@@ -1,12 +1,12 @@
 import Navbar from '../../components/Navbar/Navbar';
 import React, { useState } from 'react';
 import FileUpload from '../../components/FileUpload/FileUpload';
+import ImagePreview from '../../components/imageDetails/ImagePreview';
 function Image_Recognition(){
     
     const [sourceIsURL, updateImgSrc] = useState(false)
-
+    const [imageRef, updateImg] = useState(null)
     return (
-        
         <div>
             <Navbar/>
             <div className='flex items-center justify-center h-screenr py-12'>
@@ -16,7 +16,7 @@ function Image_Recognition(){
                     <span className="ml-3 text-sm font-medium">Use an image URL</span>
                 </label>
             </div>
-            <div className='flex items-center justify-center h-screenr ' > 
+            <div className='flex items-center justify-center h-screenr' > 
             { sourceIsURL ? 
                 <form className="w-full max-w-lg">
                     <div className="flex flex-wrap -mx-3 mb-6">
@@ -28,9 +28,11 @@ function Image_Recognition(){
                             <p className="text-red-500 text-xs italic">Please fill out this field.</p>
                         </div>
                     </div>
-                    
                 </form>
-            : <FileUpload/> }
+            : <FileUpload imageRef={ imageRef } updateImg={ updateImg }/> }
+            </div>
+            <div className='flex items-center justify-center h-screenr'>
+                <ImagePreview imageRef={ imageRef }/>
             </div>
         </div>
     );
