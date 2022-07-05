@@ -1,10 +1,10 @@
 import React from 'react';
 function FileUpload({imageRef, updateImg}){
-
+    const imageMimeType = /image\/(png|jpg|jpeg)/i;
 
     function handleImageUpload(event){
         const files = event.target.files[0]
-        updateImg(files)
+        !files.type.match(imageMimeType) ? alert("The file selected is not a valid image type") : updateImg(files)
     }
     return (
         <div className="flex justify-center items-center w-60">

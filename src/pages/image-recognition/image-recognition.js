@@ -32,7 +32,7 @@ function Image_Recognition(){
             : <FileUpload imageRef={ imageRef } updateImg={ updateImg }/> }
             </div>
             <div className='flex items-center justify-center h-screenr'>
-                <ImagePreview imageRef={ imageRef }/>
+                <ImagePreview imageRef={ imageRef } updateImg={ updateImg }/>
             </div>
         </div>
     );

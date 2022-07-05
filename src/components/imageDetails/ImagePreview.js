@@ -1,22 +1,40 @@
-import React, { useEffect, useState } from "react";
-function ImagePreview({imageRef}){
-    const height = 200, width = 200
-    const [currentImg, UpdateCurrentImg] = useState(null)
-    useEffect(()=>{
-        if(imageRef){
-            const fileReader = new FileReader();
-            fileReader.push(imageRef)
-            fileReader.onload = (e) => {
-                const { result } = e.target;
-                if (result) {
-                  UpdateCurrentImg(result)
-                }
-              }
-            fileReader.readAsDataURL(currentImg);
+import { useEffect, useState } from 'react';
+
+
+
+function ImagePreview({imageRef, updateImg}) {
+    const [fileDataURL, setFileDataURL] = useState(null);
+    const height = 400, width = 400
+    useEffect(() => {
+        let fileReader, isCancel = false;
+        if (imageRef) {
+        fileReader = new FileReader();
+        fileReader.onload = (e) => {
+            const { result } = e.target;
+            if (result && !isCancel) {
+            setFileDataURL(result)
+            }
         }
-    }, imageRef)
+        fileReader.readAsDataURL(imageRef);
+        }
+        return () => {
+        isCancel = true;
+        if (fileReader && fileReader.readyState === 1) {
+            fileReader.abort();
+        }
+        }
+
+    }, [imageRef]);
+
     return (
-        <img src={ currentImg } alt="" height={ height } width={ width } />
-    )
+        <>
+        {fileDataURL ?
+            <p className="img-preview-wrapper">
+            {
+                <img src={fileDataURL} alt="preview" height = { height } width = { width }/>
+            }
+            </p> : null}
+        </>
+    );
 }
 export default ImagePreview;
