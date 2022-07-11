@@ -1,11 +1,26 @@
-import Navbar from '../../components/Navbar/Navbar';
 import React, { useState } from 'react';
+//Custom components
+import Navbar from '../../components/Navbar/Navbar';
 import FileUpload from '../../components/FileUpload/FileUpload';
 import ImagePreview from '../../components/imageDetails/ImagePreview';
+//Custom handlers
+import ImageHandler from '../../connection/ImageHandler'
+import URLHandler from '../../connection/URLHandler';
+
 function Image_Recognition(){
     
     const [sourceIsURL, updateImgSrc] = useState(false)
     const [imageRef, updateImg] = useState(null)
+    const [url, updateUrl] = useState('')
+
+    async function  handleImageDescription(){
+        const result = await ImageHandler();
+    }
+    function handleUrlonChange(event){
+        updateUrl(event.target.value)
+        console.log(url)
+    }
+    
     return (
         <div>
             <Navbar/>
@@ -24,7 +39,7 @@ function Image_Recognition(){
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                 Paste here your image URL, make sure is a valid one by putting it on the browser
                             </label>
-                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="URL" />
+                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="URL" onChange={ (e) => handleUrlonChange(e) }/>
                             <p className="text-red-500 text-xs italic">Please fill out this field.</p>
                         </div>
                     </div>
@@ -34,11 +49,14 @@ function Image_Recognition(){
              <FileUpload imageRef={ imageRef } updateImg={ updateImg }/> }
              { imageRef !== null && !sourceIsURL ? 
              <div>
-                <button type="button" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-500 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onClick={ () => updateImg(null) }>
+                <button type="button" className="w-96 text-white bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-red-700 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-700" onClick={ () => updateImg(null) }>
                     Use other image
                 </button>
                 <div className='flex items-center justify-center h-screenr'>
-                <ImagePreview imageRef={ imageRef } updateImg={ updateImg }/>
+                    <ImagePreview imageRef={ imageRef } />
+                </div>
+                <div>
+                    <button type="button" className="w-96 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={ () => handleImageDescription() }>Analize image</button>
                 </div>
              </div>
              :<></>

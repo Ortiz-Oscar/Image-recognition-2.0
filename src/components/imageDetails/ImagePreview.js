@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 
 
-function ImagePreview({imageRef, updateImg}) {
+function ImagePreview({imageRef}) {
     const [fileDataURL, setFileDataURL] = useState(null);
     const height = 500, width = 400
     useEffect(() => {
@@ -31,7 +31,7 @@ function ImagePreview({imageRef, updateImg}) {
     return (
         <>
         {fileDataURL ?
-            <p className="img-preview-wrapper">
+            <p className="py-5">
             {
                 <img src={fileDataURL} alt="preview" height = { height } width = { width }/>
             }
