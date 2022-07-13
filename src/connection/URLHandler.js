@@ -18,11 +18,11 @@ async function URLHandler(url) {
   client
     .analyzeImage(url, options)
     .then((result) => {
-      console.log("The result is:" , result);
+      console.log("From url handler, the result is:" , result);
       x = result
     })
     .catch((err) => {
-      console.log("An error occurred:", err);
+      console.log("From url handler, an error occurred:", err);
     });
   return x;
 }

@@ -12,18 +12,20 @@ async function ImageHandler(image = null) {
     language: "en",
     visualFeatures: ["Faces"],
   };
-  let data = new FormData()
-  data.append(image)
+
+  let blob = new Blob([image], {type: 'image'});
   let x = null
   client
-    .analyzeImage(data, options)
-    .then((result) => {
-      console.log("The result is:" , result);
-      x = result
-    })
-    .catch((err) => {
-      console.log("An error occurred:", err);
-    });
+  .analyzeImageInStream(blob, options)
+  .then((result) => {
+    console.log("The result is:" , result);
+    x = result
+  })
+  .catch((err) => {
+    console.log("An error occurred:", err);
+  });
+
+
   return x;
 }
 export default ImageHandler

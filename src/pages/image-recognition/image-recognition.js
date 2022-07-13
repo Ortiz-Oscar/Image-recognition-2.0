@@ -14,11 +14,14 @@ function Image_Recognition(){
     const [url, updateUrl] = useState('')
 
     async function  handleImageDescription(){
-        const result = await ImageHandler();
+        if (imageRef !== null) await ImageHandler(imageRef);
     }
+    async function handleUrlDescription(){
+        if (url.length !== 0) await URLHandler(url);
+    }
+    
     function handleUrlonChange(event){
         updateUrl(event.target.value)
-        console.log(url)
     }
     
     return (
@@ -31,7 +34,7 @@ function Image_Recognition(){
                     <span className="ml-3 text-sm font-medium">Use an image URL</span>
                 </label>
             </div>
-            <div className='flex items-center justify-center h-screenr' > 
+            <div className='flex items-center justify-center h-screenr'>
             { sourceIsURL ? 
                 <form className="w-full max-w-lg">
                     <div className="flex flex-wrap -mx-3 mb-6">
@@ -45,8 +48,9 @@ function Image_Recognition(){
                     </div>
                 </form>
             : imageRef !== null ?
-             <></> :
+             null :
              <FileUpload imageRef={ imageRef } updateImg={ updateImg }/> }
+
              { imageRef !== null && !sourceIsURL ? 
              <div>
                 <button type="button" className="w-96 text-white bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-red-700 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-400 dark:hover:bg-red-500 dark:focus:ring-red-700" onClick={ () => updateImg(null) }>
@@ -55,12 +59,12 @@ function Image_Recognition(){
                 <div className='flex items-center justify-center h-screenr'>
                     <ImagePreview imageRef={ imageRef } />
                 </div>
-                <div>
-                    <button type="button" className="w-96 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={ () => handleImageDescription() }>Analize image</button>
-                </div>
              </div>
-             :<></>
+             : null
              }
+            </div>
+            <div className='flex justify-center py-5'>
+                <button type="button" className="w-96 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={ () => sourceIsURL ? handleUrlDescription() : handleImageDescription() }>Analize image</button>
             </div>
         </div>
     );
