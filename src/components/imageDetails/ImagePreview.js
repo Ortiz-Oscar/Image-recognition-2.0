@@ -16,14 +16,14 @@ function ImagePreview({imageRef}) {
             }
         }
         fileReader.readAsDataURL(imageRef);
-        }else{
+        } else {
             setFileDataURL(null)
         }
         return () => {
-        isCancel = true;
-        if (fileReader && fileReader.readyState === 1) {
-            fileReader.abort();
-        }
+            isCancel = true;
+            if (fileReader && fileReader.readyState === 1) {
+                fileReader.abort();
+            }
         }
 
     }, [imageRef]);

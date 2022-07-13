@@ -14,12 +14,10 @@ async function URLHandler(url) {
     visualFeatures: ["Faces"],
   };
 
-  let result_analisis = null
-  client
+  let result_analisis = await client
     .analyzeImage(url, options)
     .then((result) => {
-      console.log("From url handler, the result is:" , result);
-      result_analisis = result
+      return result
     })
     .catch((err) => {
       console.log("From url handler, an error occurred:", err);
