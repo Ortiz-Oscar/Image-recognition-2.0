@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 function Canvas({ result }){
-    const Height = 400, Width = 600;
-    let canvas = React.createRef();
+    const Height = 500, Width = 400;
+    const canvas = React.createRef();
     useEffect(()=>{
-        console.log(result, canvas.current)
+        console.log(result.faces, canvas.current)
+        let ctx = canvas.current.getContext('2d');
+        ctx.fillStyle = 'green';
+        ctx.fillRect(10, 10, 150, 100);
+
     }, [result])
     return(
-        <canvas height = { Height } width = { Width } ref={ canvas }></canvas>
+        <canvas height = { Height } width = { Width } ref={ canvas } ></canvas>
     )
 }
+export default Canvas;

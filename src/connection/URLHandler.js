@@ -2,8 +2,7 @@ const { ComputerVisionClient } = require("@azure/cognitiveservices-computervisio
 const { CognitiveServicesCredentials }  = require("@azure/ms-rest-azure-js");
 
 async function URLHandler(url) {
-  
-    const computerVisionKey = process.env["computerVisionKey"] || "7b89298d4ae74ee992210d545dab4a63";
+  const computerVisionKey = process.env["computerVisionKey"] || "7b89298d4ae74ee992210d545dab4a63";
   const computerVisionEndPoint =
     process.env["computerVisionEndPoint"] || "https://oscarortizcomputervision.cognitiveservices.azure.com/";
   const cognitiveServiceCredentials = new CognitiveServicesCredentials(computerVisionKey);
@@ -14,16 +13,17 @@ async function URLHandler(url) {
     language: "en",
     visualFeatures: ["Faces"],
   };
-  let x = null
+
+  let result_analisis = null
   client
     .analyzeImage(url, options)
     .then((result) => {
       console.log("From url handler, the result is:" , result);
-      x = result
+      result_analisis = result
     })
     .catch((err) => {
       console.log("From url handler, an error occurred:", err);
     });
-  return x;
+  return result_analisis;
 }
 export default URLHandler

@@ -12,20 +12,16 @@ async function ImageHandler(image = null) {
     language: "en",
     visualFeatures: ["Faces"],
   };
+  let blob = new Blob([image], {type: 'image'}); //Transform the image file into a blob for the transference between the server and the app
 
-  let blob = new Blob([image], {type: 'image'});
-  let x = null
-  client
+  let result_analisis = await client
   .analyzeImageInStream(blob, options)
   .then((result) => {
-    console.log("The result is:" , result);
-    x = result
+    return result
   })
   .catch((err) => {
     console.log("An error occurred:", err);
   });
-
-
-  return x;
+  return result_analisis;
 }
 export default ImageHandler

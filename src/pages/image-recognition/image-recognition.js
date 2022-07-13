@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import FileUpload from '../../components/FileUpload/FileUpload';
 import ImagePreview from '../../components/imageDetails/ImagePreview';
+import Canvas from '../../components/Canvas/Canvas';
 //Custom handlers
 import ImageHandler from '../../connection/ImageHandler'
 import URLHandler from '../../connection/URLHandler';
@@ -12,12 +13,17 @@ function Image_Recognition(){
     const [sourceIsURL, updateImgSrc] = useState(false)
     const [imageRef, updateImg] = useState(null)
     const [url, updateUrl] = useState('')
+    const [analisisResult, updateAnalisisResult] = useState(null)
 
     async function  handleImageDescription(){
-        if (imageRef !== null) await ImageHandler(imageRef);
+        if (imageRef !== null){
+            updateAnalisisResult(await ImageHandler(imageRef));
+        }
     }
     async function handleUrlDescription(){
-        if (url.length !== 0) await URLHandler(url);
+        if (url.length !== 0){
+            updateAnalisisResult(await URLHandler(url));
+        }
     }
     
     function handleUrlonChange(event){
@@ -35,6 +41,9 @@ function Image_Recognition(){
                 </label>
             </div>
             <div className='flex items-center justify-center h-screenr'>
+            {
+                analisisResult !== null ? <Canvas result = { analisisResult }></Canvas> : null
+            }
             { sourceIsURL ? 
                 <form className="w-full max-w-lg">
                     <div className="flex flex-wrap -mx-3 mb-6">
@@ -43,7 +52,10 @@ function Image_Recognition(){
                                 Paste here your image URL, make sure is a valid one by putting it on the browser
                             </label>
                             <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="URL" onChange={ (e) => handleUrlonChange(e) }/>
-                            <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+                            {
+                                url.length === 0 ? <p className="text-red-500 text-xs italic">Please fill out this field.</p> : null
+                            }
+                        
                         </div>
                     </div>
                 </form>

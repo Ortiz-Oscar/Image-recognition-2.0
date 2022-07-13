@@ -17,7 +17,7 @@ root.render(
     <BrowserRouter>
     <Routes>
     <Route path="/" element={<App />} />
-    <Route path="/img-recon" element={<Image_Recognition />} />
+    <Route path="/image-recognition" element={<Image_Recognition />} />
     <Route path="/text-to-speech" element={<Text_to_Speech />} />
     </Routes>
     </BrowserRouter>
