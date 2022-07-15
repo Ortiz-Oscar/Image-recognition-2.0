@@ -33,6 +33,9 @@ function Image_Recognition(){
     function handleUrlonChange(event){
         updateUrl(event.target.value)
     }
+    function clearAnalisisResult(){
+        updateAnalisisResult(null)
+    }
     
 
     return (
@@ -47,7 +50,13 @@ function Image_Recognition(){
             </div>
             <div className='flex items-center justify-center h-screenr'>
             {
-                analisisResult !== null ? <Canvas result = { analisisResult } imageRef={ imageRef } url = { url } sourceIsURL={ sourceIsURL } ></Canvas> : null
+                analisisResult !== null ? 
+                    <div>
+                        <button className='w-96 text-white bg-purple-400 hover:bg-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-700 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-purple-400 dark:hover:bg-purple-500 dark:focus:ring-purple-700' onClick={ () => clearAnalisisResult() }>Clear analisis result</button>
+                        <Canvas result = { analisisResult } imageRef={ imageRef } url = { url } sourceIsURL={ sourceIsURL } ></Canvas>
+                    </div>
+                    
+                : null
             }
             { sourceIsURL ? 
                 <form className="w-full max-w-lg">

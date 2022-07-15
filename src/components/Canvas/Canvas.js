@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { ScalateImage, DrawFaceIdentifiers } from "../../utilities/CanvasHelpers";
 function Canvas({ result, imageRef, url, sourceIsURL }){
-    const Height = 500, Width = 400;
+    const Height = 750, Width = 750;
     const canvas = React.createRef();
     useEffect(()=>{
-        // console.log(result.faces, canvas.current)
         let ctx = canvas.current.getContext('2d');
         //Creates an url for drawing the image into the canvas
         const imageURL = sourceIsURL ? url : URL.createObjectURL(imageRef) 
