@@ -7,7 +7,7 @@ export function ScalateImage(img, ctx) {
     const centerShift_y = ( canvas.height - img.height*ratio ) / 2;  
     ctx.clearRect(0,0,canvas.width, canvas.height);
     ctx.drawImage(img, 0,0, img.width, img.height,
-                       centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);  
+                       centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);
 }
 export function DrawFaceIdentifiers(faces , ctx, Height, Width, img){
 
@@ -18,8 +18,8 @@ export function DrawFaceIdentifiers(faces , ctx, Height, Width, img){
         ctx.lineWidth = "5";
         ctx.strokeStyle = "blue";
         //TODO The offset is causing a missplacement on the canvas
-        ctx.rect(faceRectangle.left * Width/img.width, 
-        faceRectangle.top * Height/img.height , faceRectangle.width * Width / img.width, faceRectangle.height * Height/img.height );
+        ctx.rect(faceRectangle.left * Width / img.width, 
+        faceRectangle.top * Height / img.height , faceRectangle.width * Width / img.width, faceRectangle.height * Height/img.height );
         ctx.stroke();
     }
 }

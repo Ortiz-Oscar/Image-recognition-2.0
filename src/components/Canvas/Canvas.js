@@ -13,11 +13,11 @@ function Canvas({ result, imageRef, url, sourceIsURL }){
             DrawFaceIdentifiers(result.faces, ctx, Height, Width, image)
         }
         //Testing
-        console.log(result)
+        //console.log(result)
         image.src = imageURL;
     }, [result])
     return(
-        <canvas height = { Height } width = { Width } ref={ canvas } ></canvas>
+        <canvas height = { Height } width = { Width } ref={ canvas } />
     )
 }
 export default Canvas;
