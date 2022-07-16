@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import FileUpload from '../../components/FileUpload/FileUpload';
 import ImagePreview from '../../components/imageDetails/ImagePreview';
 import Canvas from '../../components/Canvas/Canvas';
+import Loading from '../../components/Loading/Loading';
 //Custom handlers
 import ImageHandler from '../../connection/ImageHandler'
 import URLHandler from '../../connection/URLHandler';
@@ -44,6 +45,7 @@ function Image_Recognition(){
     return (
         <div>
             <Navbar/>
+            <Loading></Loading>
             <div className='flex items-center justify-center h-screenr py-12'>
                 <label className="inline-flex relative items-center mr-5 cursor-pointer">
                     <input type="checkbox" value="" id="red-toggle" className="sr-only peer" onClick={ () => updateImgSrc(!sourceIsURL) }/>

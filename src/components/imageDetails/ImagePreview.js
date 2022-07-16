@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 function ImagePreview({imageRef}) {
     const [fileDataURL, setFileDataURL] = useState(null);
-    const height = 500, width = 400
+    const height = 400, width = 400
     useEffect(() => {
         let fileReader, isCancel = false;
         if (imageRef) {

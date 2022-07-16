@@ -15,9 +15,9 @@ export function DrawFaceIdentifiers(faces , ctx, Height, Width, img){
         console.log(face.faceRectangle)
         const faceRectangle = face.faceRectangle
         ctx.beginPath();
-        ctx.lineWidth = "5";
-        ctx.strokeStyle = "blue";
-        //TODO The offset is causing a missplacement on the canvas
+        ctx.lineWidth = "3";
+        ctx.strokeStyle = "yellow";
+        //TODO The offset is causing a missplacement of the rectangles on the canvas when the image source is an URL
         ctx.rect(faceRectangle.left * Width / img.width, 
         faceRectangle.top * Height / img.height , faceRectangle.width * Width / img.width, faceRectangle.height * Height/img.height );
         ctx.stroke();

@@ -17,7 +17,7 @@ function Canvas({ result, imageRef, url, sourceIsURL }){
         image.src = imageURL;
     }, [result])
     return(
-        <canvas height = { Height } width = { Width } ref={ canvas } />
+        <canvas height = { Height } width = { Width } ref={ canvas } className='py-4' style={{ border : "1px solid red" }} />
     )
 }
 export default Canvas;
