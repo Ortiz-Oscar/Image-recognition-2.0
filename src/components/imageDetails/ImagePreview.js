@@ -2,31 +2,33 @@ import { useEffect, useState } from 'react';
 
 
 
-function ImagePreview({imageRef}) {
+function ImagePreview({imageRef, imageUrl}) {
     const [fileDataURL, setFileDataURL] = useState(null);
     const height = 400, width = 400
     useEffect(() => {
         let fileReader, isCancel = false;
         if (imageRef) {
-        fileReader = new FileReader();
-        fileReader.onload = (e) => {
-            const { result } = e.target;
-            if (result && !isCancel) {
-            setFileDataURL(result)
+            fileReader = new FileReader();
+            fileReader.onload = (e) => {
+                const { result } = e.target;
+                if (result && !isCancel) {
+                setFileDataURL(result)
+                }
             }
-        }
-        fileReader.readAsDataURL(imageRef);
+            fileReader.readAsDataURL(imageRef);
+        }else if(imageUrl){
+            setFileDataURL(imageUrl)
         } else {
             setFileDataURL(null)
         }
-        return () => {
-            isCancel = true;
-            if (fileReader && fileReader.readyState === 1) {
-                fileReader.abort();
+            return () => {
+                isCancel = true;
+                if (fileReader && fileReader.readyState === 1) {
+                    fileReader.abort();
+                }
             }
-        }
 
-    }, [imageRef]);
+    }, [imageRef, imageUrl]);
 
     return (
         <>

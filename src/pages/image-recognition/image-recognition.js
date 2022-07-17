@@ -45,8 +45,7 @@ function Image_Recognition(){
     return (
         <div>
             <Navbar/>
-            <Loading></Loading>
-            <div className='flex items-center justify-center h-screenr py-12'>
+            <div className='flex items-center justify-center h-screenr py-5' style={{display: analisisResult !== null ? "none" : ""}}>
                 <label className="inline-flex relative items-center mr-5 cursor-pointer">
                     <input type="checkbox" value="" id="red-toggle" className="sr-only peer" onClick={ () => updateImgSrc(!sourceIsURL) }/>
                     <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-green-500 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
@@ -56,7 +55,7 @@ function Image_Recognition(){
             <div className='flex items-center justify-center h-screenr'>
             {
                 analisisResult !== null ? 
-                    <div className='items-center justify-center h-screen'>
+                    <div className='items-center justify-center h-screen py-5'>
                         <button type='button' className = 'w-full text-white bg-purple-400 hover:bg-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-700 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 dark:bg-purple-400 dark:hover:bg-purple-500 dark:focus:ring-purple-700' onClick={ () => clearAnalisisResult() }>Clear analisis result</button>
                         <Canvas result = { analisisResult } imageRef={ imageRef } url = { url } sourceIsURL={ sourceIsURL } ></Canvas>
                     </div>
@@ -72,6 +71,9 @@ function Image_Recognition(){
                                 {
                                     url.length === 0 ? <p className="text-red-500 text-xs italic">Please fill out this field.</p> : null
                                 }
+                                <div className='flex items-center justify-center h-screenr'>
+                                    <ImagePreview imageUrl={ url } />
+                                </div>
                             
                             </div>
                         </div>
