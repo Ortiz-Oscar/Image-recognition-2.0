@@ -41,7 +41,6 @@ function Image_Recognition(){
         updateAnalisisResult(null)
     }
     function handleImageSourceSwitch(){
-        sourceIsURL ? updateUrl('') : updateImg(null)
         updateImgSrc(!sourceIsURL)
     }
 
@@ -50,7 +49,7 @@ function Image_Recognition(){
             <Navbar/>
             <div className='flex items-center justify-center h-screenr py-5' style={{display: analisisResult !== null ? "none" : ""}}>
                 <label className="inline-flex relative items-center mr-5 cursor-pointer">
-                    <input type="checkbox" value="" id="red-toggle" className="sr-only peer" onClick={ () => handleImageSourceSwitch() }/>
+                    <input type="checkbox" id="red-toggle" className="sr-only peer" onClick={ () => handleImageSourceSwitch() } />
                     <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-green-500 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
                     <span className="ml-3 text-sm font-medium">Use an image URL</span>
                 </label>
@@ -70,7 +69,7 @@ function Image_Recognition(){
                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                     Paste here your image URL, make sure is a valid one by putting it on the browser
                                 </label>
-                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="URL" onChange={ (e) => handleUrlonChange(e) }/>
+                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="URL" value = { url } onChange={ (e) => handleUrlonChange(e) }/>
                                 {
                                     url.length === 0 ? <p className="text-red-500 text-xs italic">Please fill out this field.</p> : null
                                 }
