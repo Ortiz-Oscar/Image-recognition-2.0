@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { ScalateImage, DrawFaceIdentifiers } from "../../utilities/CanvasHelpers";
 function Canvas({ result, imageRef, url, sourceIsURL }){
-    const Height = 750, Width = 750;
+    const Height = 400, Width = 400;
     const canvas = React.createRef();
     useEffect(()=>{
         let ctx = canvas.current.getContext('2d');
@@ -10,14 +10,12 @@ function Canvas({ result, imageRef, url, sourceIsURL }){
         const image = new Image();
         image.onload = function() {
             ScalateImage(image, ctx)
-            DrawFaceIdentifiers(result.faces, ctx, Height, Width, image)
+            DrawFaceIdentifiers(result.faces, ctx, image)
         }
-        //Testing
-        //console.log(result)
         image.src = imageURL;
     }, [result])
     return(
-        <canvas height = { Height } width = { Width } ref={ canvas } className='py-4' style={{ border : "1px solid red" }} />
+        <canvas height = { Height } width = { Width } ref={ canvas } className='py-4' />
     )
 }
 export default Canvas;
