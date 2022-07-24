@@ -5,6 +5,7 @@ import FileUpload from '../../components/FileUpload/FileUpload';
 import ImagePreview from '../../components/imageDetails/ImagePreview';
 import Canvas from '../../components/Canvas/Canvas';
 import Loading from '../../components/Loading/Loading';
+import { Options } from '../../components/Options/Options';
 //Custom handlers
 import ImageHandler from '../../connection/ImageHandler'
 import URLHandler from '../../connection/URLHandler';
@@ -47,6 +48,7 @@ function Image_Recognition(){
     return (
         <div>
             <Navbar/>
+            <Options></Options>
             <div className='flex items-center justify-center h-screenr py-5' style={{display: analisisResult !== null ? "none" : ""}}>
                 <label className="inline-flex relative items-center mr-5 cursor-pointer">
                     <input type="checkbox" id="red-toggle" className="sr-only peer" onClick={ () => handleImageSourceSwitch() } />
