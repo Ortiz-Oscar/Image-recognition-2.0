@@ -1,7 +1,8 @@
 import { client, options } from '../utilities/Constants'
-async function ImageHandler(image = null) {
+async function ImageHandler(image = null, selectedOption) {
 
   //Transform the image file into a blob for the transference between the server and the app
+
   let blob = new Blob([image], {type: 'image'});
 
   let result_analisis = await client

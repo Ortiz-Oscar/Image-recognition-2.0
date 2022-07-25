@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ScalateImage, DrawFaceIdentifiers } from "../../utilities/CanvasHelpers";
+import { ScalateImage, DrawIdentifiers } from "../../utilities/CanvasHelpers";
 function Canvas({ result, imageRef, url, sourceIsURL }){
     const Height = 600, Width = 800;
     const canvas = React.createRef();
@@ -10,7 +10,8 @@ function Canvas({ result, imageRef, url, sourceIsURL }){
         const image = new Image();
         image.onload = function() {
             ScalateImage(image, ctx)
-            DrawFaceIdentifiers(result.faces, ctx, image)
+            console.log(result)
+            DrawIdentifiers(result.faces, ctx, image)
         }
         image.src = imageURL;
     }, [result])

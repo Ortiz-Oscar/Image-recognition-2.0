@@ -9,7 +9,6 @@ const cognitiveServiceCredentials = new CognitiveServicesCredentials(computerVis
 
 export const client = new ComputerVisionClient(cognitiveServiceCredentials, computerVisionEndPoint);
 export const options = {
-    maxCandidates: 5,
     language: "en",
     visualFeatures: ["Faces"],
   };

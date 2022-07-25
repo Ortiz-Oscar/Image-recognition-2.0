@@ -5,32 +5,37 @@ import FileUpload from '../../components/FileUpload/FileUpload';
 import ImagePreview from '../../components/imageDetails/ImagePreview';
 import Canvas from '../../components/Canvas/Canvas';
 import Loading from '../../components/Loading/Loading';
+import { ErrorAlert } from '../../components/ErrorAlert/ErrorAlert';
 import { Options } from '../../components/Options/Options';
 //Custom handlers
 import ImageHandler from '../../connection/ImageHandler'
 import URLHandler from '../../connection/URLHandler';
 
 function Image_Recognition(){
-    
+    const optionsList = [
+        {  service:'Detect faces on image',  handler: 1 },
+        {  service:'Detect objects on image',  handler: 2 },
+        {  service:'Describe image',  handler: 3 },
+    ]
+
     const [sourceIsURL, updateImgSrc] = useState(false)
     const [imageRef, updateImg] = useState(null)
     const [url, updateUrl] = useState('')
     const [analisisResult, updateAnalisisResult] = useState(null)
-
-    //TODO Add a consistent management of if statements to watch over states of apps
-    //TODO Add a component for result management
-    //TODO Fix the incosistency between the offsets of images and results
+    const [selectedOption, setSelectedOption] = useState(optionsList[0].handler)
 
     async function  handleImageDescription(){
         if (imageRef !== null){
-            updateAnalisisResult(await ImageHandler(imageRef));
+            updateAnalisisResult(await ImageHandler(imageRef, selectedOption));
         }
     }
+
     async function handleUrlDescription(){
         if (url.length !== 0){
-            updateAnalisisResult(await URLHandler(url));
+            updateAnalisisResult(await URLHandler(url, selectedOption));
         }
     }
+
     function handleImageSelection(){
         updateImg(null)
         updateAnalisisResult(null)
@@ -48,13 +53,16 @@ function Image_Recognition(){
     return (
         <div>
             <Navbar/>
-            <Options></Options>
+            
             <div className='flex items-center justify-center h-screenr py-5' style={{display: analisisResult !== null ? "none" : ""}}>
                 <label className="inline-flex relative items-center mr-5 cursor-pointer">
                     <input type="checkbox" id="red-toggle" className="sr-only peer" onClick={ () => handleImageSourceSwitch() } />
                     <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-green-500 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
                     <span className="ml-3 text-sm font-medium">Use an image URL</span>
                 </label>
+                <div>
+                    <Options optionsList={ optionsList } setSelectedOption={setSelectedOption}></Options>
+                </div>
             </div>
             <div className='flex items-center justify-center h-screenr'>
             {

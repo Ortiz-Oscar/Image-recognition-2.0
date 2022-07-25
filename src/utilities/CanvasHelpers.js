@@ -9,7 +9,7 @@ export function ScalateImage(img, ctx) {
     ctx.drawImage(img, 0,0, img.width, img.height,
                        centerShift_x,centerShift_y,img.width*ratio, img.height*ratio);
 }
-export function DrawFaceIdentifiers(faces , ctx, img){
+export function DrawIdentifiers(faces , ctx, img){
 
     const canvas = ctx.canvas ;
     const hRatio = canvas.width  / img.width    ;
@@ -28,5 +28,11 @@ export function DrawFaceIdentifiers(faces , ctx, img){
             faceRectangle.width * ratio,
             faceRectangle.height * ratio);
         ctx.stroke();
+        //Text
+        ctx.fillStyle = "white"
+        ctx.font = "12.5px Arial";
+        ctx.fillText(`${ face.gender }, ${ face.age }`, (faceRectangle.left * ratio) + centerShift_x, 
+        (faceRectangle.top * ratio) + centerShift_y - 10); 
+
     }
 }
