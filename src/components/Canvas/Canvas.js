@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { ScalateImage, DrawFaceIdentifiers } from "../../utilities/CanvasHelpers";
 function Canvas({ result, imageRef, url, sourceIsURL }){
-    const Height = 400, Width = 400;
+    const Height = 600, Width = 800;
     const canvas = React.createRef();
     useEffect(()=>{
         let ctx = canvas.current.getContext('2d');
