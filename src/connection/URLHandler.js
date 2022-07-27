@@ -1,13 +1,16 @@
 import { client, options } from '../utilities/Constants'
 async function URLHandler(url, selectedOption) {
 
+  console.log(selectedOption)
   let resultAnalisis = null
-  
   switch(selectedOption){
     //Analize image
-    case 1:
+    case '1':{
       resultAnalisis = await client
-      .analyzeImage(url, options)
+      .analyzeImage(url, {    
+        language: "en",
+        visualFeatures: ["Faces"],
+      })
       .then((result) => {
         return result
       })
@@ -15,10 +18,14 @@ async function URLHandler(url, selectedOption) {
         console.log("From url handler, an error occurred:", err);
       });
       break;
+    }
     // Detect objects
-    case 2:
+    case '2':{
       resultAnalisis = await client
-      .detectObjects(url, options)
+      .analyzeImage(url, {    
+        language: "en",
+        visualFeatures: ["Objects"],
+      })
       .then((result) => {
         return result
       })
@@ -26,8 +33,9 @@ async function URLHandler(url, selectedOption) {
         console.log("From url handler, an error occurred:", err);
       });
       break;
+    }
     // Describe image
-    default:
+    case '3':{
       resultAnalisis = await client
       .describeImage(url, options)
       .then((result) => {
@@ -37,6 +45,7 @@ async function URLHandler(url, selectedOption) {
         console.log("From url handler, an error occurred:", err);
       });
       break;
+    }
   }
   return resultAnalisis;
 }

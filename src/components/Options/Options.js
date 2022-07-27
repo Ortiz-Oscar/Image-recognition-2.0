@@ -2,7 +2,8 @@ import React from "react";
 export function Options( {optionsList, setSelectedOption } ){
     
     function handleSelectedChange(event){
-        setSelectedOption(event.target.handler)
+        console.log(event.target.value)
+        setSelectedOption(event.target.value)
     }
     return (
         <>

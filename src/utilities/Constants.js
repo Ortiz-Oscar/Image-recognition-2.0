@@ -10,5 +10,5 @@ const cognitiveServiceCredentials = new CognitiveServicesCredentials(computerVis
 export const client = new ComputerVisionClient(cognitiveServiceCredentials, computerVisionEndPoint);
 export const options = {
     language: "en",
-    visualFeatures: ["Faces"],
+    visualFeatures: ["Faces", "Objects"],
   };
