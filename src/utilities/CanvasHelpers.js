@@ -36,3 +36,30 @@ export function DrawIdentifiers(faces , ctx, img){
 
     }
 }
+export function DrawObjectIdentifiers(objectList , ctx, img){
+
+    const canvas = ctx.canvas ;
+    const hRatio = canvas.width  / img.width    ;
+    const vRatio =  canvas.height / img.height  ;
+    const ratio  = Math.min ( hRatio, vRatio );
+    const centerShift_x = ( canvas.width - img.width*ratio ) / 2;
+    const centerShift_y = ( canvas.height - img.height*ratio ) / 2;
+
+    for(const object of objectList){
+        const objectRectangle = object.rectangle
+        ctx.beginPath();
+        ctx.lineWidth = "3";
+        ctx.strokeStyle = "yellow";
+        ctx.rect((objectRectangle.x * ratio) + centerShift_x, 
+            (objectRectangle.y * ratio) + centerShift_y,
+            objectRectangle.w * ratio,
+            objectRectangle.h * ratio);
+        ctx.stroke();
+        //Text
+        ctx.fillStyle = "white"
+        ctx.font = "12.5px Arial";
+        ctx.fillText(`${ object.object }, ${ object.confidence }`, (objectRectangle.x * ratio) + centerShift_x, 
+        (objectRectangle.y * ratio) + centerShift_y - 10); 
+
+    }
+}

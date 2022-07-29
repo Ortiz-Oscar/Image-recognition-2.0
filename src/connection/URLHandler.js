@@ -1,7 +1,6 @@
 import { client, options } from '../utilities/Constants'
 async function URLHandler(url, selectedOption) {
-
-  console.log(selectedOption)
+  
   let resultAnalisis = null
   switch(selectedOption){
     //Analize image
