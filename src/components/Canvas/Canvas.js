@@ -41,9 +41,9 @@ function Canvas({ result, imageRef, url, sourceIsURL, selectedOption }){
                  focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600
                   dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
                    dark:focus:border-blue-500" disabled> { 
-                        selectedOption == '1' ? `Total number of faces detected: ${ JSON.stringify(result.faces.length) }, \n\n
+                        selectedOption === '1' ? `Total number of faces detected: ${ JSON.stringify(result.faces.length) }, \n\n
                         ${JSON.stringify(result.faces) }` :
-                        selectedOption == '2' ? `Total number of objects detected: ${ JSON.stringify(result.objects.length) }, \n\n
+                        selectedOption === '2' ? `Total number of objects detected: ${ JSON.stringify(result.objects.length) }, \n\n
                         ${JSON.stringify(result.objects)}`  :
                         `Result description: ${ JSON.stringify(result.captions[0].text) }, confidence: ${ result.captions[0].confidence }, \n\n
                         Tags: ${ JSON.stringify(result.tags) }`

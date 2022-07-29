@@ -1,6 +1,6 @@
 import { client, options } from '../utilities/Constants'
 async function URLHandler(url, selectedOption) {
-  
+
   let resultAnalisis = null
   switch(selectedOption){
     //Analize image
@@ -34,7 +34,7 @@ async function URLHandler(url, selectedOption) {
       break;
     }
     // Describe image
-    case '3':{
+    default :{
       resultAnalisis = await client
       .describeImage(url, options)
       .then((result) => {
