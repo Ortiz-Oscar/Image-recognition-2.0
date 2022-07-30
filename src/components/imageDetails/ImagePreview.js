@@ -33,7 +33,7 @@ function ImagePreview({imageRef, imageUrl}) {
     return (
         <>
         {fileDataURL ?
-            <p className="py-5">
+            <p className="py-1">
             {
                 <img src={fileDataURL} alt="If you don't see the image, please check the url" height = { height } width = { width }/>
             }

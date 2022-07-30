@@ -23,15 +23,19 @@ function Image_Recognition(){
     const [url, updateUrl] = useState('')
     const [analisisResult, updateAnalisisResult] = useState(null)
     const [selectedOption, setSelectedOption] = useState(`${optionsList[0].handler}`)
-    async function  handleImageDescription(){
+    const [isLoading, setIsLoading] = useState(false)
+
+    async function handleImageDescription(){
         if (imageRef !== null){
-            updateAnalisisResult(await ImageHandler(imageRef, selectedOption));
+            setIsLoading(true)
+            updateAnalisisResult(await ImageHandler(imageRef, selectedOption).finally(()=>setIsLoading(false)));
         }
     }
 
     async function handleUrlDescription(){
         if (url.length !== 0){
-            updateAnalisisResult(await URLHandler(url, selectedOption));
+            setIsLoading(true)
+            updateAnalisisResult(await URLHandler(url, selectedOption).finally(()=>setIsLoading(false)));
         }
     }
 
@@ -102,11 +106,18 @@ function Image_Recognition(){
              : null
              }
             </div>
-            { analisisResult == null ? 
-            <div className='flex justify-center py-5'>
+            { analisisResult == null && !isLoading? 
+            <div className='flex justify-center py-1'>
                 <button type="button" className="w-96 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={ () => sourceIsURL ? handleUrlDescription() : handleImageDescription() }>Analize image</button>
             </div> :
                  null}
+            {
+                isLoading ? 
+                    <div className='flex justify-center'>
+                        <Loading> </Loading>
+                    </div>
+                     : null
+            }
             
         </div>
     );

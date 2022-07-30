@@ -30,10 +30,10 @@ function Canvas({ result, imageRef, url, sourceIsURL, selectedOption }){
     }, [result])
     return(
         <div className="flex items-center">
-            <div className='py-2'>
+            <div className='py-1'>
                 <canvas height = { Height } width = { Width } ref={ canvas }/>
             </div>
-            <div className="py-2 pl-1.5">
+            <div className="py-1 pl-1.5">
                 <label htmlFor="result-string" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Analisis result</label>
                 <div id="result-string" rows="30"  
                 className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 
