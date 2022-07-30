@@ -24,11 +24,14 @@ function Image_Recognition(){
     const [analisisResult, updateAnalisisResult] = useState(null)
     const [selectedOption, setSelectedOption] = useState(`${optionsList[0].handler}`)
     const [isLoading, setIsLoading] = useState(false)
+    const [errorMessage, setErrorMessage] = useState()
 
     async function handleImageDescription(){
         if (imageRef !== null){
             setIsLoading(true)
             updateAnalisisResult(await ImageHandler(imageRef, selectedOption).finally(()=>setIsLoading(false)));
+        } else {
+            handleErrorMessage('no image was provided')
         }
     }
 
@@ -36,6 +39,8 @@ function Image_Recognition(){
         if (url.length !== 0){
             setIsLoading(true)
             updateAnalisisResult(await URLHandler(url, selectedOption).finally(()=>setIsLoading(false)));
+        } else {
+            handleErrorMessage('no URL was given')
         }
     }
 
@@ -51,6 +56,10 @@ function Image_Recognition(){
     }
     function handleImageSourceSwitch(){
         updateImgSrc(!sourceIsURL)
+    }
+    function handleErrorMessage(msg){
+        setErrorMessage(msg)
+        setTimeout(()=>setErrorMessage(null),5000)
     }
 
     return (
@@ -106,10 +115,14 @@ function Image_Recognition(){
              : null
              }
             </div>
-            { analisisResult == null && !isLoading? 
-            <div className='flex justify-center py-1'>
-                <button type="button" className="w-96 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={ () => sourceIsURL ? handleUrlDescription() : handleImageDescription() }>Analize image</button>
-            </div> :
+            { errorMessage ? 
+                <div className='flex justify-center py-2'>
+                    <ErrorAlert message={ errorMessage }/>
+                </div> : null }
+            { analisisResult == null && !isLoading ? 
+                <div className='flex justify-center py-1'>
+                    <button type="button" className="w-96 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={ () => sourceIsURL ? handleUrlDescription() : handleImageDescription() }>Analize image</button>
+                </div> :
                  null}
             {
                 isLoading ? 
