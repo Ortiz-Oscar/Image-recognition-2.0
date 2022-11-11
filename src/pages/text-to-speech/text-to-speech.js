@@ -3,7 +3,7 @@ function Text_to_Speech(){
     return (
         <div>
             <Navbar/>
-            Hello from text to speech recon page
+            Soon to be implemented
         </div>
     );
 }
